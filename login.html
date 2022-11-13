@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/webapp.css">
+  
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" type="text/css" href="css/webapp.css" />
+  <link
+    rel="stylesheet"
+    href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai-sublime.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.2/css/solid.css"
+    integrity="sha384-r/k8YTFqmlOaqRkZuSiE9trsrDXkh07mRaoGBMoDcmA58OHILZPsk29i2BsFng1B"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css"
+    integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+"
+    crossorigin="anonymous"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdn.auth0.com/js/auth0-samples-theme/1.0/css/auth0-theme.min.css"
+  />
+</head>
+<body>
+    <div>
+        <div class="nav-container">
+            <nav class="navbar navbar-expand-md navbar-light bg-light">
+              <div class="container">
+               
+                  <a href="/">
+                    <img src="/img/codait-logo.jpg" width="100" height="100" />
+                  </a>
+             
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+      
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+             
+                    </ul>
+                  <ul class="navbar-nav d-none d-md-block">
+                    <!-- Login button: show if NOT authenticated -->
+                    <li class="nav-item auth-invisible">
+                      <button
+                        id="qsLoginBtn"
+                        onclick="login()"
+                        class="btn btn-primary btn-margin"
+                      >
+                        Log in
+                      </button>
+                    </li>
+                    <!-- / Login button -->
+      
+                    <!-- Fullsize dropdown: show if authenticated -->
+                  
+                    <!-- /Fullsize dropdown -->
+                  </ul>
+      
+                  <!-- Responsive login button: show if NOT authenticated -->
+                  <ul class="navbar-nav d-md-none auth-invisible">
+                    <button
+                      class="btn btn-primary btn-block auth-invisible hidden"
+                      id="qsLoginBtn"
+                      onclick="login()"
+                    >
+                      Log in
+                    </button>
+                  </ul>
+                  <!-- /Responsive login button -->
+
+                </div>
+              </div>
+            </nav>
+          </div>
+          <div class=" main-container d-flex align-items-center" style="justify-content: space-evenly;">
+            <div >
+                <a href="">
+                    <img src="/img/codait-logo.jpg" />
+                  </a>
+            </div>
+            <div>
+                <h4>Welcome to</h4>
+                <h1>Vehicle Defect Detector</h1>
+            </div>
+          </div>
+         
+          <script src="js/mainUI.js"></script>
+  <script src="js/webapp.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    </div>
+   
+</body>
+</html>

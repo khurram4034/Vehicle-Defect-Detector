@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Vehicle Defect Detector</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/webapp.css">
+
+  <script src="/js/jquery-3.5.1.min.js"></script>
+  <link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+/>
+<link rel="stylesheet" type="text/css" href="css/webapp.css" />
+<link
+  rel="stylesheet"
+  href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai-sublime.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.7.2/css/solid.css"
+  integrity="sha384-r/k8YTFqmlOaqRkZuSiE9trsrDXkh07mRaoGBMoDcmA58OHILZPsk29i2BsFng1B"
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css"
+  integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.auth0.com/js/auth0-samples-theme/1.0/css/auth0-theme.min.css"
+/>
+</head>
+
+<body>
+
+  <div class="container-fluid ibm-code" id="app">
+    <div class="nav-container">
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container">
+         
+            <a href="/">
+              <img src="/img/codait-logo.jpg" width="100" height="100" />
+            </a>
+       
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+             
+            </ul>
+            <ul class="navbar-nav d-none d-md-block">
+              <!-- Login button: show if NOT authenticated -->
+              <li class="nav-item auth-invisible">
+                <button
+                  id="qsLoginBtn"
+                  onclick="login()"
+                  class="btn btn-primary btn-margin auth-invisible hidden"
+                >
+                  Log in
+                </button>
+              </li>
+              <!-- / Login button -->
+
+              <!-- Fullsize dropdown: show if authenticated -->
+              <li class="nav-item dropdown auth-visible hidden">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="profileDropDown"
+                  data-toggle="dropdown"
+                >
+                  <!-- Profile image should be set to the profile picture from the id token -->
+                  <img
+                    alt="Profile picture"
+                    class="nav-user-profile profile-image rounded-circle"
+                    width="50"
+                  />
+                 
+                </a>
+                <div class="dropdown-menu">
+                  <!-- Show the user's full name from the id token here -->
+                  <div class="dropdown-header nav-user-name user-name"></div>
+                  <!-- <a
+                    href="/profile"
+                    class="dropdown-item dropdown-profile route-link"
+                  >
+                    <i class="fas fa-user mr-3"></i> Profile
+                  </a> -->
+                  <a
+                    href="#"
+                    class="dropdown-item"
+                    id="qsLogoutBtn"
+                    onclick="logout()"
+                  >
+                    <i class="fas fa-power-off mr-3"></i> Log out
+                  </a>
+                </div>
+              </li>
+              <!-- /Fullsize dropdown -->
+            </ul>
+            <p class="user-name"></pc>
+
+            <!-- Responsive login button: show if NOT authenticated -->
+            <ul class="navbar-nav d-md-none auth-invisible">
+              <button
+                class="btn btn-primary btn-block auth-invisible hidden"
+                id="qsLoginBtn"
+                onclick="login()"
+              >
+                Log in
+              </button>
+            </ul>
+            <!-- /Responsive login button -->
+
+            <!-- Responsive profile dropdown: show if authenticated -->
+            <ul
+              class="
+                navbar-nav
+                d-md-none
+                auth-visible
+                hidden
+                justify-content-between
+              "
+              style="min-height: 125px"
+            >
+              <li class="nav-item">
+                <span class="user-info">
+                  <!-- Profile image should be set to the profile picture from the id token -->
+                  <img
+                    alt="Profile picture"
+                    class="
+                      nav-user-profile
+                      d-inline-block
+                      profile-image
+                      rounded-circle
+                      mr-3
+                    "
+                    width="50"
+                  />
+                  <!-- Show the user's full name from the id token here -->
+                  <h6 class="d-inline-block nav-user-name user-name"></h6>
+                </span>
+              </li>
+              <li>
+                <i class="fas fa-user mr-3"></i>
+                <a href="/profile" class="route-link">Profile</a>
+              </li>
+
+              <li>
+                <i class="fas fa-power-off mr-3"></i>
+                <a href="#" id="qsLogoutBtn" onclick="logout()">Log out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="row">
+      <div id="main-content">
+        <div id="content-home" class="d-flex justify-content-center">
+          <div class="col-md-6">
+
+            <div id="codait-logo" class="col-md-3">
+              <a href="">
+                <img src="/img/codait-logo.jpg" />
+              </a>
+            </div>
+    
+            <div class="col-md-3 title-section">
+              <h1>Vehicle Defect Detector</h1>
+            </div>
+    
+            <div class="col-md-6">
+    
+              <div id="image-upload" class="panel panel-default">
+    
+                <div class="panel-heading">
+                  <div class="panel-title">Upload an image</div>
+                </div>
+    
+                <div class="panel-body">
+                  <form id="file-upload" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <input id="file-input" type="file" name="file" accept=".png, .jpg, .jpeg, .gif" multiple/>
+                    </div>
+                    <button id="file-submit" type="submit" class="btn btn-primary">Submit</button>
+                    <!-- <button id="webcam-btn" type="button" class="btn btn-primary" style="float:right;">Use your
+                      webcam</button> -->
+                  </form>
+    
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+
+            <div id="label-filter" class="panel panel-default">
+    
+              <div class="panel-heading">
+                <div class="panel-title">
+                  Processed Images
+                  <span class="info-icon"
+                    title="Select a label icon to filter any matching detected objects. Hovering over an icon will highlight any matching objects.">&#9432;</span>
+                </div>
+              </div>
+    
+              <div class="panel-body">
+                <!-- <script>
+                references = ["1", "2", "3"];
+                document.getElementById("output").innerHTML = references.join('<br>');
+                </script>
+                <div id="output">
+                  <div>Extracting...</div>
+                </div> -->
+                <div id="label-icons"></div>
+              </div>
+    
+            </div>
+          </div>
+        </div>
+
+        <div class="page" id="content-profile">
+          <div class="">
+            <div class="row align-items-center profile-header">
+              
+              <div class="col-md-2">
+                <img
+                  alt="User's profile picture"
+                  class="rounded-circle img-fluid profile-image mb-3 mb-md-0"
+                />
+               
+              </div>
+              <div class="col-md">
+                <h2 class="user-name"></h2>
+                <p class="lead text-muted user-email"></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <pre class="rounded">
+                <code id="profile-data" class="json"></code></pre>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- wwwwwwwwwwwww -->
+     
+
+      <!-- <div class="col-md-3">
+
+        <div id="canvas-tools" class="panel panel-default">
+
+          <div class="panel-heading">
+            <div class="panel-title">
+              Filter detected objects
+              <span class="info-icon"
+                title="Use the slider to adjust the threshold for displaying detected objects. Lowering the threshold displays objects the model is less certain about. If no bounding boxes are displayed, try lowering the threshold.">&#9432;</span>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <div id="threshold-text">
+              <b>Probability Threshold:</b>
+              <span>50</span>%
+            </div>
+            <input id="threshold-range" type="range" min="0" max="100" value="50" class="slider">
+          </div>
+
+        </div>
+
+      </div> -->
+
+    
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <div id="image-display"></div>
+        <div id="webcam-video"></div>
+
+      </div>
+
+    </div>
+
+    <div class="push"></div>
+
+  </div>
+
+  <div id="footer">
+    <hr />
+
+  </div> 
+  <script src="js/mainUI.js"></script>
+  <script src="js/webapp.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+ 
+</body>
+</html>
